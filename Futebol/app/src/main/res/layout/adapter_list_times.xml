@@ -6,7 +6,7 @@
     android:layout_margin="16dp"
     android:orientation="horizontal">
     <ImageView
-        android:id="@+id/imageViewTime"
+        android:id="@+id/adapterEmblema"
         android:layout_width="80dp"
         android:layout_height="120dp"
         tools:srcCompat="@tools:sample/avatars" />
@@ -17,20 +17,30 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textViewName"
+            android:id="@+id/adapterNome"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="59dp"
             android:layout_weight="1"
             android:text="TextView"
             android:textAlignment="center"
             android:textSize="24sp" />
 
         <TextView
-            android:id="@+id/textViewOwner"
+            android:id="@+id/adapterCidade"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:text="TextView"
+            android:textAlignment="center"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/adapterEstado"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="TextView"
-            android:textAlignment="textEnd" />
+            android:textAlignment="center" />
+
     </LinearLayout>
 
 </LinearLayout>

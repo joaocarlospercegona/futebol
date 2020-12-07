@@ -23,14 +23,15 @@ public class AdapterTimes extends RecyclerView.Adapter<AdapterTimes.MyViewHolder
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView name, owner;
-        ImageView img;
+        TextView adapterNome, adapterCidade, adapterEstado;
+        ImageView adapterEmblema;
 
         public MyViewHolder(View view) {
             super(view);
-            name = view.findViewById(R.id.textViewName);
-            owner = view.findViewById(R.id.textViewOwner);
-            img = view.findViewById(R.id.imageViewTime);
+            adapterNome = view.findViewById(R.id.adapterNome);
+            adapterCidade = view.findViewById(R.id.adapterCidade);
+            adapterEstado = view.findViewById(R.id.adapterEstado);
+            adapterEmblema = view.findViewById(R.id.adapterEmblema);
         }
     }
 
@@ -39,16 +40,16 @@ public class AdapterTimes extends RecyclerView.Adapter<AdapterTimes.MyViewHolder
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View listItem = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.adapter_list_times, parent, false );
-
         return new MyViewHolder(listItem);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Time obj = listTimes.get(position);
-        holder.name.setText(obj.getName());
-        holder.owner.setText(obj.getOwner());
-        holder.img.setImageResource(obj.getImg());
+        Time t = listTimes.get(position);
+        holder.adapterEmblema.setImageResource(t.getImage());
+        holder.adapterNome.setText(t.getName());
+        holder.adapterCidade.setText(t.getCity());
+        holder.adapterEstado.setText(t.getState());
     }
 
     @Override

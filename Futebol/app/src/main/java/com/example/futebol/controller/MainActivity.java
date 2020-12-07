@@ -54,15 +54,7 @@ public class MainActivity extends AppCompatActivity {
                         new RecyclerItemClickListener.OnItemClickListener() {
                             @Override
                             public void onItemClick(View view, int position) {
-                                Time obj = listTimes.get(position);
-
-
-                                Intent it = new Intent(this, SecondActivity.class);
-                                Bundle params = new Bundle();
-                                params.putString("nome",obj);
-                                it.putExtras(params);
-                                startActivity(it);
-                                finish();
+                                detaliedScreen(view, position);
                             }
 
                             @Override
@@ -83,19 +75,40 @@ public class MainActivity extends AppCompatActivity {
         );
     }
 
+    public void detaliedScreen(View view, int position){
+        Intent it = new Intent(this, SecondActivity.class);
+
+        Time time = listTimes.get(position);
+        it.putExtra("time", time);
+
+        startActivity(it);
+    }
+
     private void createTime() {
-        ArrayList<String> conquistas = new ArrayList<String>();
-        conquistas.add("Campeao Paranaense");
-        conquistas.add("Campeao Brasileiro");
+        ArrayList<String> a1 = new ArrayList<String>();
+        a1.add("Taça Brasil de 1966");
+        a1.add("Década de 70 - A conquista da América");
+        a1.add("Série de títulos nas décadas de 1990 e 2000");
+        Time t1 = new Time(R.drawable.cruzeiro, "Cruzeiro", "Belo Horizonte", "Minas Gerais", a1);
+        listTimes.add(t1);
 
-        Time obj = new Time(R.drawable.flash, "Curitiba", "Parana / Curitiba", conquistas);
-        listTimes.add(obj);
-        obj = new Time(R.drawable.ironman, "Atletico", "Parana / Curitiba", conquistas);
-        listTimes.add(obj);
-        obj = new Time(R.drawable.ironman, "Flamengo", "Rio de Janeiro / Literoi" , conquistas);
-        listTimes.add(obj);
-        obj = new Time(R.drawable.ironman, "São Paulo", "São Paulo / Cidade de São Paulo", conquistas);
-        listTimes.add(obj);
+        ArrayList<String> a2 = new ArrayList<String>();
+        a2.add("Copa Intercontinental - 1981");
+        a2.add("2000 a 2009: o tricampeonato carioca");
+        Time t2 = new Time(R.drawable.flamengo, "Flamengo", "Rio de Janeiro","Rio de Janeiro", a2);
+        listTimes.add(t2);
 
+        ArrayList<String> a3 = new ArrayList<String>();
+        a3.add("Quádrupla coroa - 1962, 1963 e 1968");
+        a3.add("Copa Intercontinental - 1962 e 1963");
+        Time t3  = new Time(R.drawable.santos, "Santos", "Santos","São Paulo" , a3);
+        listTimes.add(t3);
+
+        ArrayList<String> a4 = new ArrayList<String>();
+        a4.add("1981-1990 – Década de ouro e a conquista do mundial");
+        a4.add("Copa Intercontinental - 1983");
+        a4.add("Copa Sanwa Bank - 1995");
+        Time t4  = new Time(R.drawable.gremio, "Grêmio", "Porto Alegre", "Rio grande do Sul", a4);
+        listTimes.add(t4);
     }
 }

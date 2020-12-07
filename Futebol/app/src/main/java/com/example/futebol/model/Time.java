@@ -1,30 +1,67 @@
 package com.example.futebol.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 
-public class Time {
-    private int img;
+public class Time implements Parcelable {
+    private int image;
     private String name;
-    private String owner;
-    private ArrayList<String> conquistas;
+    private String city;
+    private String state;
+    private ArrayList<String> achievements;
 
-    public Time() {
-
-    }
-
-    public Time(int img, String name, String owner, ArrayList<String> conquistas) {
-        this.img = img;
+    public Time(int image, String name, String city, String state, ArrayList<String> achievements) {
+        this.image = image;
         this.name = name;
-        this.owner = owner;
-        this.conquistas = conquistas;
+        this.city = city;
+        this.state = state;
+        this.achievements = achievements;
     }
 
-    public int getImg() {
-        return img;
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
-    public void setImg(int img) {
-        this.img = img;
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(image);
+        parcel.writeString(name);
+        parcel.writeString(city);
+        parcel.writeString(state);
+        parcel.writeList(achievements);
+    }
+
+    private Time(Parcel in) {
+        image = in.readInt();
+        name = in.readString();
+        city = in.readString();
+        state = in.readString();
+        achievements = in.readArrayList(null);
+    }
+
+    public static Creator<Time> CREATOR = new Creator<Time>() {
+
+        @Override
+        public Time createFromParcel(Parcel source) {
+            return new Time(source);
+        }
+
+        @Override
+        public Time[] newArray(int size) {
+            return new Time[size];
+        }
+
+    };
+
+    public int getImage() {
+        return image;
+    }
+
+    public void setImage(int image) {
+        this.image = image;
     }
 
     public String getName() {
@@ -35,19 +72,27 @@ public class Time {
         this.name = name;
     }
 
-    public String getOwner() {
-        return owner;
+    public String getCity() {
+        return city;
     }
 
-    public void setOwner(String owner) {
-        this.owner = owner;
+    public void setCity(String city) {
+        this.city = city;
     }
 
-    public ArrayList<String> getConquistas() {
-        return conquistas;
+    public String getState() {
+        return state;
     }
 
-    public void setConquistas(ArrayList<String> conquistas) {
-        this.conquistas = conquistas;
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public ArrayList<String> getAchievements() {
+        return achievements;
+    }
+
+    public void setAchievements(ArrayList<String> achievements) {
+        this.achievements = achievements;
     }
 }
