@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -54,11 +55,14 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onItemClick(View view, int position) {
                                 Time obj = listTimes.get(position);
-                                Toast.makeText(
-                                        getApplicationContext(),
-                                        "Selecionado " + obj.getName(),
-                                        Toast.LENGTH_SHORT
-                                ).show();
+
+
+                                Intent it = new Intent(this, SecondActivity.class);
+                                Bundle params = new Bundle();
+                                params.putString("nome",obj);
+                                it.putExtras(params);
+                                startActivity(it);
+                                finish();
                             }
 
                             @Override
@@ -80,13 +84,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void createTime() {
-        Time obj = new Time(R.drawable.flash, "Curitiba", "Parana / Curitiba");
+        ArrayList<String> conquistas = new ArrayList<String>();
+        conquistas.add("Campeao Paranaense");
+        conquistas.add("Campeao Brasileiro");
+
+        Time obj = new Time(R.drawable.flash, "Curitiba", "Parana / Curitiba", conquistas);
         listTimes.add(obj);
-        obj = new Time(R.drawable.ironman, "Atletico", "Parana / Curitiba");
+        obj = new Time(R.drawable.ironman, "Atletico", "Parana / Curitiba", conquistas);
         listTimes.add(obj);
-        obj = new Time(R.drawable.ironman, "Flamengo", "Rio de Janeiro / Literoi");
+        obj = new Time(R.drawable.ironman, "Flamengo", "Rio de Janeiro / Literoi" , conquistas);
         listTimes.add(obj);
-        obj = new Time(R.drawable.ironman, "São Paulo", "São Paulo / Cidade de São Paulo");
+        obj = new Time(R.drawable.ironman, "São Paulo", "São Paulo / Cidade de São Paulo", conquistas);
         listTimes.add(obj);
+
     }
 }
